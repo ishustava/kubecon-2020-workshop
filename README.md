@@ -10,6 +10,3 @@ Before you start, make sure you have the following installed on your machine
 * kubectl
 * kind v0.7.0+
 * helm
-
-## Getting started
-
