@@ -213,7 +213,7 @@ ERROR: failed to create cluster: docker run error: command "docker run --hostnam
 ```
 
 First, stop the `web` and `api` services. Then start kind using the command
-above, then retart the `web` and `api` services using their start scripts.
+above, then restart the `web` and `api` services using their start scripts.
 
 ### Load your docker image into kind
 To load your Docker image into your local `kind` Kubernetes cluster, tag it and
