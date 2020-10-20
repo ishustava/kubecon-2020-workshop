@@ -95,7 +95,8 @@ kubectl delete pod api
 pod "api" deleted
 ```
 
-```kubectl get pod
+```bash
+kubectl get pod
 No resources found in default namespace.
 ```
 
