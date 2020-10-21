@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    app: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "80"
+    spec:
+      containers:
+        - name: api
+          image: docker.io/lkysow/api:v0.1.0
+          env:
+            - name: METRICS_ENABLE_PROMETHEUS
+              value: "true"
+          ports:
+            - containerPort: 80

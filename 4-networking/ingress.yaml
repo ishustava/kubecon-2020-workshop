@@ -10,3 +10,7 @@ spec:
             backend:
               serviceName: api
               servicePort: 9090
+          - path: /metrics
+            backend:
+              serviceName: api
+              servicePort: 9090

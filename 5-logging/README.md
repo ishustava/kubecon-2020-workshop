@@ -9,7 +9,7 @@ In this step, we will add a logging platform and forward our application logs to
 
 ## Tasks
 
-#### Create a new namespaces for logging components
+#### Create a namespace for logging components
 
 ```bash
 $ kubectl create ns logging
