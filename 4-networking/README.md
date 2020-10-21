@@ -11,7 +11,7 @@ In this step, we will expose our API service so that web can talk to it.
 
 ### Kubernetes Service
 
-1. Create a ClusterIP service for the API deployment that we will later use for ingress.
+Create a ClusterIP service for the API deployment that we will later use for ingress.
 
    ```yaml
    apiVersion: v1
@@ -30,7 +30,7 @@ In this step, we will expose our API service so that web can talk to it.
    service/api created
    ```
    
-   Check that the service is created:
+Check that the service is created:
    
    ```bash
    $ kubectl get service
@@ -39,7 +39,7 @@ In this step, we will expose our API service so that web can talk to it.
    kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP    69m
    ```
    
-   Verify that the `api` service has endpoints:
+Verify that the `api` service has endpoints:
    
    ```bash
    $ kubectl get endpoints
@@ -48,9 +48,9 @@ In this step, we will expose our API service so that web can talk to it.
    kubernetes   172.18.0.2:6443   71m
    ```
    
-   ClusterIP services are only reachable from within the cluster.
-   To verify that we can talk to our API service,
-   we'll create a temporary pod and try to curl the api service from there.
+ClusterIP services are only reachable from within the cluster.
+To verify that we can talk to our API service,
+we'll create a temporary pod and try to curl the api service from there.
    
    ```bash
    $ kubectl run -it test-api --image tutum/curl --restart Never -- curl http://api:9090
@@ -69,7 +69,7 @@ In this step, we will expose our API service so that web can talk to it.
    }
    ```
    
-   Delete the `test-api` pod:
+Delete the `test-api` pod:
    
    ```bash
    kubectl delete po/test-api

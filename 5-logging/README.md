@@ -18,7 +18,7 @@ namespace/logging created
 
 #### Deploy ECK (Elastic Cloud on Kubernetes)
 
-First, we will deploy the Elastic operator (ECK) on Kubernetes. The line below comes from [Elastic docs](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-deploy-eck.html).
+First, we will deploy the Elastic operator (ECK) on Kubernetes (ref: [Elastic docs](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-deploy-eck.html)).
 
 ```bash
 $ kubectl apply -f https://download.elastic.co/downloads/eck/1.2.1/all-in-one.yaml
@@ -166,8 +166,8 @@ so that we can search logs as shown below.
 
 ![](../images/kibana-create-index.gif)
 
-Now you can search application logs!
-Try this KQL query to see all logs from the `api service:
+Now we can search application logs!
+Try this KQL query to see all logs from the `api` service:
 
 ```bash
 kubernetes.labels.app : "api"
