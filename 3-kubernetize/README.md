@@ -1,7 +1,13 @@
-## Overview
-In this stage, you will deploy the `api` service to Kubernetes.
+## Step 3: Deploy to Kubernetes
+In this step, you will deploy the `api` service to Kubernetes.
 
-## Start Kubernetes
+## Goals
+* `api` is deployed to Kubernetes.
+* `api` has been tested on Kubernetes.
+
+## Tasks
+
+### Start Kubernetes
 For this tutorial you will be running Kubernetes locally on your
 machine using `kind`. `kind` stands for "Kubernetes in Docker" and is an
 easy way to run Kubernetes locally.
@@ -38,7 +44,7 @@ ERROR: failed to create cluster: docker run error: command "docker run --hostnam
 First, stop the `web` and `api` services you're running locally. Then start kind using the command
 above, then restart the `web` and `api` services using their start scripts.
 
-## Verify Kind
+### Verify Kind
 
 Verify that `kind` is working by running:
 ```bash
@@ -47,7 +53,7 @@ NAME                 STATUS   ROLES    AGE   VERSION
 kind-control-plane   Ready    master   33m   v1.19.1
 ```
 
-## Pod
+### Pod
 A pod is a single replica of the application. Its specification looks like:
 ```yaml
 apiVersion: v1
@@ -100,7 +106,7 @@ kubectl get pod
 No resources found in default namespace.
 ```
 
-## Deployment
+### Deployment
 What you need is a deployment. A deployment starts pods but also manages them to ensure
 the right number is running.
 
@@ -162,7 +168,7 @@ NAME                  READY   STATUS    RESTARTS   AGE
 api-56dbdd4fc-7n6md   1/1     Running   0          6s
 ```
 
-## Verify
+### Verify
 Verify that the deployment is working as expected by using the `kubectl port-forward`
 command:
 

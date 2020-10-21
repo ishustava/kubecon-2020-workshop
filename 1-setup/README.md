@@ -1,8 +1,14 @@
-## Overview
-In this stage, you will set up our "VMs" by running the `web` and `api` services
+## Step 1: Setup
+In this step, you will set up your "VMs" by running the `web` and `api` services
 on your local machine.
 
-## Web
+## Goals
+* Start `web` and `api` services.
+* Allow `web` to call `api`.
+
+## Tasks
+
+### Web
 In one terminal tab, start `web`:
 
 ```bash
@@ -44,7 +50,7 @@ dependency `api`: `Error communicating with upstream service: Get \"http://api/\
 This makes sense because we haven't started `api` yet.
 
 
-## Api
+### Api
 Start the `api` service now in another terminal tab:
 
 ```bash
@@ -77,7 +83,7 @@ If we open our browser to [http://127.0.0.1/](http://127.0.0.1/) we should see
 
 This means our `api` service is working!
 
-## Web calls Api
+### Web calls Api
 
 All that's left is for `web` to call `api`.
 

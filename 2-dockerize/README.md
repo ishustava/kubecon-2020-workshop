@@ -1,10 +1,16 @@
-## Overview
-In this stage, you will build a Docker image for the `api` service.
+## Step 2: Dockerize
+In this step, you will build a Docker image for the `api` service.
 
-## Dockerfile
+## Goals
+* Docker image is built for the `api` service.
+* Docker image has been tested.
+
+## Tasks
+
+### Dockerfile
 A `Dockerfile` is like a build script for the Docker image. 
 
-### Base Image
+#### Base Image
 First, you need to decide what base image your image will build on. The base
 image must contain all the libraries and tooling that your application requires.
 For example, if you want to run `node` then your base image must contain
@@ -35,7 +41,7 @@ export LISTEN_ADDR="127.0.0.1:80"
 
 You'll see `export` instructions and finally the execution of `api-darwin`.
 
-### Environment Variables
+#### Environment Variables
 
 The `export` commands can be replicated in your Docker image with the `ENV`
 instruction.
@@ -74,7 +80,7 @@ RUN mkdir /app
 COPY ./bin/api/api-linux /app/api
 ```
 
-### Entrypoint
+#### Entrypoint
 Finally, you'll need to specify the default command that gets run when the
 container is started. In your case, you'll want to start `api`:
 
@@ -82,7 +88,7 @@ container is started. In your case, you'll want to start `api`:
 ENTRYPOINT ["/app/api"]
 ```
 
-### Final Dockerfile
+#### Final Dockerfile
 Putting it all together, your Dockerfile should look like:
 
 ```dockerfile
@@ -96,7 +102,7 @@ ENTRYPOINT ["/app/api"]
 
 Create this file in the root of the repo with the name `Dockerfile`.
 
-## Docker build
+### Docker build
 To build your Docker image, run:
 ```bash
 docker build .
@@ -132,7 +138,7 @@ The last line should give you the image id:
 Successfully built b4227513fc2c
 ```
 
-## Docker run
+### Docker run
 You should test your image before deploying it to Kubernetes. To do so,
 start it using `docker run`. You'll need to also pass `--publish` so that
 a port on your machine is forwarded to the Docker container:
@@ -170,7 +176,7 @@ as expected.
 
 `Ctrl-C` the `docker run` command to stop the container.
 
-## Docker publish
+### Docker publish
 Your Docker image only exists on your machine right now. In order for Kubernetes
 to run it, it must be published to a registry.
 
@@ -184,7 +190,7 @@ If you don't have a Docker hub account, you can load the Docker image directly
 into the Kubernetes cluster because for the tutorial the cluster is running
 locally.
 
-### Start the Kubernetes cluster
+#### Start the Kubernetes cluster
 ```bash
 ./k8s/start-kind.sh
 
@@ -215,7 +221,7 @@ ERROR: failed to create cluster: docker run error: command "docker run --hostnam
 First, stop the `web` and `api` services. Then start kind using the command
 above, then restart the `web` and `api` services using their start scripts.
 
-### Load your docker image into kind
+#### Load your docker image into kind
 To load your Docker image into your local `kind` Kubernetes cluster, tag it and
 then use the
 `kind load` command:
