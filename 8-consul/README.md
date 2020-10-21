@@ -15,10 +15,7 @@ We will be using Consul for our ingress controller so we first need to
 uninstall NGINX.
 
 ```bash
-kubectl delete -f 4-networking/ingress.yaml
-
-Warning: networking.k8s.io/v1beta1 Ingress is deprecated in v1.19+, unavailable in v1.22+; use networking.k8s.io/v1 Ingress
-ingress.networking.k8s.io "api" deleted
+kubectl delete -f 4-networking/nginx-ingress.yaml
 ```
 
 ### Install Consul
