@@ -189,3 +189,7 @@ We know it's working because `upstream_calls` has the response from `api`.
 ## Conclusion
 We now have `web` and `api` running on our development machine. This mimics
 running them on VMs.
+
+## Next Step
+
+Go to [2-dockerize](../2-dockerize/README.md).

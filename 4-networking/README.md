@@ -23,6 +23,7 @@ Create a ClusterIP service for the API deployment that we will later use for ing
        app: api
      ports:
        - port: 9090
+         targetPort: 80
    ```
    
    ```bash
@@ -55,7 +56,7 @@ we'll create a temporary pod and try to curl the api service from there.
    ```bash
    $ kubectl run -it test-api --image tutum/curl --restart Never -- curl http://api:9090
    {
-     "name": "Service",
+     "name": "api-k8s",
      "uri": "/",
      "type": "HTTP",
      "ip_addresses": [
@@ -77,79 +78,85 @@ Delete the `test-api` pod:
 
 ### Ingress
 
-1. Install NGINX ingress controller into your cluster.
+First, install NGINX ingress controller into your cluster.
    
-    ```bash
-    $ kubectl apply -f nginx-ingress.yaml
-    namespace/ingress-nginx created
-    serviceaccount/ingress-nginx created
-    configmap/ingress-nginx-controller created
-    clusterrole.rbac.authorization.k8s.io/ingress-nginx created
-    clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx created
-    role.rbac.authorization.k8s.io/ingress-nginx created
-    rolebinding.rbac.authorization.k8s.io/ingress-nginx created
-    service/ingress-nginx-controller-admission created
-    service/ingress-nginx-controller created
-    deployment.apps/ingress-nginx-controller created
-    validatingwebhookconfiguration.admissionregistration.k8s.io/ingress-nginx-admission created
-    serviceaccount/ingress-nginx-admission created
-    clusterrole.rbac.authorization.k8s.io/ingress-nginx-admission created
-    clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx-admission created
-    role.rbac.authorization.k8s.io/ingress-nginx-admission created
-    rolebinding.rbac.authorization.k8s.io/ingress-nginx-admission created
-    job.batch/ingress-nginx-admission-create created
-    job.batch/ingress-nginx-admission-patch created
-    ```
+```bash
+$ kubectl apply -f nginx-ingress.yaml
+namespace/ingress-nginx created
+serviceaccount/ingress-nginx created
+configmap/ingress-nginx-controller created
+clusterrole.rbac.authorization.k8s.io/ingress-nginx created
+clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx created
+role.rbac.authorization.k8s.io/ingress-nginx created
+rolebinding.rbac.authorization.k8s.io/ingress-nginx created
+service/ingress-nginx-controller-admission created
+service/ingress-nginx-controller created
+deployment.apps/ingress-nginx-controller created
+validatingwebhookconfiguration.admissionregistration.k8s.io/ingress-nginx-admission created
+serviceaccount/ingress-nginx-admission created
+clusterrole.rbac.authorization.k8s.io/ingress-nginx-admission created
+clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx-admission created
+role.rbac.authorization.k8s.io/ingress-nginx-admission created
+rolebinding.rbac.authorization.k8s.io/ingress-nginx-admission created
+job.batch/ingress-nginx-admission-create created
+job.batch/ingress-nginx-admission-patch created
+```
    
-   Wait for the ingress controller to become healthy.
+Wait for the ingress controller to become healthy.
    
-    ```bash
-    $ kubectl get pods -n ingress-nginx
-    NAME                                       READY   STATUS      RESTARTS   AGE
-    ingress-nginx-admission-create-5lgm2       0/1     Completed   0          46s
-    ingress-nginx-admission-patch-htg5m        0/1     Completed   0          46s
-    ingress-nginx-controller-b9fbd76f4-6dfh8   1/1     Running     0          46s
-    ```
+```bash
+$ kubectl get pods -n ingress-nginx
+NAME                                       READY   STATUS      RESTARTS   AGE
+ingress-nginx-admission-create-5lgm2       0/1     Completed   0          46s
+ingress-nginx-admission-patch-htg5m        0/1     Completed   0          46s
+ingress-nginx-controller-b9fbd76f4-6dfh8   1/1     Running     0          46s
+```
 
-1. Create an ingress configuration file
+Next, create an ingress configuration file and apply it to the cluster:
 
-    ```yaml
-    apiVersion: networking.k8s.io/v1beta1
-    kind: Ingress
-    metadata:
-     name: api
-    spec:
-     rules:
-       - http:
-           paths:
-             - path: /
-               backend:
-                 serviceName: api
-                 servicePort: 9090
-    ```
+```yaml
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+ name: api
+spec:
+ rules:
+   - http:
+       paths:
+         - path: /
+           backend:
+             serviceName: api
+             servicePort: 9090
+```
 
-1. Apply the file:
+```bash
+$ kubectl apply -f ingress.yaml
+ingress.networking.k8s.io/api created
+```
 
-    ```bash
-    $ kubectl apply -f ingress.yaml
-    ingress.networking.k8s.io/api created
-    ```
+Finally, Verify that the we can reach the service from our local machine:
 
-1. Verify that the we can reach the service from our local machine:
+```bash
+$ curl localhost
+{
+ "name": "api-k8s",
+ "uri": "/",
+ "type": "HTTP",
+ "ip_addresses": [
+   "10.244.0.5"
+ ],
+ "start_time": "2020-10-20T18:15:18.558101",
+ "end_time": "2020-10-20T18:15:18.558261",
+ "duration": "160.3µs",
+ "body": "Hello World",
+ "code": 200
+}
+```
+   
+## Conclusion
 
-    ```bash
-    $ curl localhost
-    {
-     "name": "api",
-     "uri": "/",
-     "type": "HTTP",
-     "ip_addresses": [
-       "10.244.0.5"
-     ],
-     "start_time": "2020-10-20T18:15:18.558101",
-     "end_time": "2020-10-20T18:15:18.558261",
-     "duration": "160.3µs",
-     "body": "Hello World",
-     "code": 200
-    }
-    ```
+We can now reach API from our local machine.
+
+## Next Step
+
+Go to [5-logging](../5-logging/README.md).

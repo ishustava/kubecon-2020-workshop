@@ -199,3 +199,7 @@ see:
 
 ## Conclusion
 `api` is now running on Kubernetes!
+
+## Next Step
+
+Go to [4-networking](../4-networking/README.md).

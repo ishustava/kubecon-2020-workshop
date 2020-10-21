@@ -9,14 +9,14 @@ In this step, we will add a logging platform and forward our application logs to
 
 ## Tasks
 
-#### Create a namespace for logging components
+### Create a namespace for logging components
 
 ```bash
 $ kubectl create ns logging
 namespace/logging created
 ```
 
-#### Deploy ECK (Elastic Cloud on Kubernetes)
+### Deploy ECK (Elastic Cloud on Kubernetes)
 
 First, we will deploy the Elastic operator (ECK) on Kubernetes (ref: [Elastic docs](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-deploy-eck.html)).
 
@@ -40,7 +40,7 @@ statefulset.apps/elastic-operator created
 validatingwebhookconfiguration.admissionregistration.k8s.io/elastic-webhook.k8s.elastic.co created
 ```
 
-#### Deploy Elastic
+### Deploy Elastic
 
 Now we can use the ECK operator to create an Elastic cluster.
 
@@ -84,7 +84,7 @@ NAME      HEALTH   NODES   VERSION   PHASE   AGE
 kubecon   green    1       7.9.2     Ready   6m54s
 ```
 
-#### Deploy Kibana
+### Deploy Kibana
 
 ```yaml
 apiVersion: kibana.k8s.elastic.co/v1
@@ -114,7 +114,7 @@ NAME      HEALTH   NODES   VERSION   AGE
 kubecon   green    1       7.9.2     79s
 ```
 
-#### Log in to the Kibana instance
+### Log in to the Kibana instance
 
 First, get the password from the secret for our Elastic user:
 
@@ -136,7 +136,7 @@ We won't be able to see any data because we haven't started forwarding logs to e
 
 ![](../images/kibana-login-no-data.gif)
 
-#### Forward application logs with Fluentd
+### Forward application logs with Fluentd
 
 Next, we need to deploy Fluentd as a daemonset and configure it to forward all logs to Elastic.
 
@@ -158,7 +158,7 @@ NAME      DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   A
 fluentd   1         1         1       1            1           <none>          17s
 ```
 
-#### Create logging index in Kibana
+### Create logging index in Kibana
 
 Go back to the Kibana UI at https://localhost:5601.
 Then navigate to "Discover" under "Kibana" and configure an index
@@ -172,3 +172,11 @@ Try this KQL query to see all logs from the `api` service:
 ```bash
 kubernetes.labels.app : "api"
 ```
+
+## Conclusion
+
+We can now see our app logs in Elastic.
+
+## Next Step
+
+Go to [6-metrics](../6-metrics/README.md).

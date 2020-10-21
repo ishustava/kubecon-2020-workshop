@@ -235,3 +235,7 @@ Image: "docker.io/lkysow/api:v0.1.0" with ID "sha256:b4227513fc2c3323d389c3eecf4
 ## Conclusion
 In this section, you created a `Dockerfile`, built a Docker image, and pushed
 it to a registry or directly to `kind`.
+
+## Next Step
+
+Go to [3-kubernetize](../3-kubernetize/README.md).

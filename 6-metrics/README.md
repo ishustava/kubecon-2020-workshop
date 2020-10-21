@@ -11,14 +11,14 @@ In this step, we will add a logging platform and forward our application logs to
 
 ## Tasks
 
-#### Create a namespace for metrics components
+### Create a namespace for metrics components
 
 ```bash
 $ kubectl create ns metrics
 namespace/metrics created
 ```
 
-#### Install Prometheus using the Helm chart
+### Install Prometheus using the Helm chart
 
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -38,7 +38,7 @@ prometheus-pushgateway-69ccbfb9b8-sz822         1/1     Running   0          87s
 prometheus-server-bc989b599-6rdrz               2/2     Running   0          87s
 ```
 
-#### Install Grafana usisng the Helm chart
+### Install Grafana usisng the Helm chart
 
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts
@@ -48,7 +48,7 @@ helm install grafana grafana/grafana -n metrics
 Note the password in the output of `helm install` above.
 You will need to it to login to Grafana.
 
-#### Add Prometheus datasource to Grafana
+### Add Prometheus datasource to Grafana
 
 First, port-forward Grafana service so we can reach it locally.
 
@@ -77,7 +77,7 @@ Once added, we should be able to see Kubernetes metrics.
 
 ![](../images/grafana-add-prometheus.gif)
 
-#### Scrape metrics from the api service
+### Scrape metrics from the api service
 
 First, enable the metrics endpoint on the `api` service
 by setting `METRICS_ENABLE_PROMETHEUS` to `true` in the deployment.yaml.
@@ -122,7 +122,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: api:v0.1.0
+          image: docker.io/lkysow/api:v0.1.0
           env:
             - name: METRICS_ENABLE_PROMETHEUS
               value: "true"
@@ -146,3 +146,11 @@ histogram_quantile(0.95, sum(rate(handle_request_http_seconds_bucket[1h])) by (l
 ```
 
 ![](../images/grafana.png)
+
+## Conclusion
+
+We can now see our application metrics in Grafana through Prometheus.
+
+## Next Step
+
+Go to [7-migration](../7-migration/README.md).

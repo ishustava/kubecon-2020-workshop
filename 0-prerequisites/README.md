@@ -4,3 +4,7 @@
 * [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation) v0.7.0+
 * [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 * [Helm](https://helm.sh/docs/intro/install/)
+
+## Next Step
+
+Go to [1-setup](../1-setup/README.md).
