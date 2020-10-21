@@ -90,7 +90,7 @@ the service mesh.
 To add it to the service mesh we need to add the `consul.hashicorp.com/connect-injected: true` annotation:
 
 ```bash
-kubectl patch deployment api -p '[{"op":"add","path":"/spec/template/metadata/annotations","value":{"consul.hashicorp.com/connect-inject": "true"}}]' --type "json"
+kubectl patch deployment api -p '[{"op":"add","path":"/spec/template/metadata/annotations/consul.hashicorp.com~1connect-inject","value":"true"}]' --type "json"
 ```
 
 Wait for the deployment to be ready:
@@ -150,7 +150,7 @@ Now that our service mesh is working, let's try out some cool features.
 We can cause our `api` service to return a 500 50% of the time:
 
 ```bash
-kubectl patch deployment api -p '[{"op":"add","path":"/spec/template/spec/containers/0/env","value":[{"name": "ERROR_RATE", "value": "0.5"}]}]' --type "json"
+kubectl patch deployment api -p '[{"op":"add","path":"/spec/template/spec/containers/0/env/1","value":{"name": "ERROR_RATE", "value": "0.5"}}]' --type "json"
 ```
 
 Wait for the rollout:
