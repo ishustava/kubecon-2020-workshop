@@ -2,7 +2,7 @@ apiVersion: elasticsearch.k8s.elastic.co/v1
 kind: Elasticsearch
 metadata:
   name: kubecon
-  namespace: kube-system
+  namespace: logging
 spec:
   version: 7.9.2
   nodeSets:

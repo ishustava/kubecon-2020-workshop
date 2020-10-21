@@ -28,7 +28,7 @@ kubectl get pods
 
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts
-helm install --name grafana grafana/grafana
+helm install grafana grafana/grafana
 ```
 
 Note the password in the output of `helm install`. You will need to it to login to Grafana.
