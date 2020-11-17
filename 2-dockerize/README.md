@@ -5,6 +5,8 @@ In this step, you will build a Docker image for the `api` service.
 * Docker image is built for the `api` service.
 * Docker image has been tested.
 
+**Windows Users:** We are building a Docker image to run on our Linux Kubernetes cluster so follow these instructions the same as OSX.
+
 ## Tasks
 
 ### Dockerfile
@@ -138,6 +140,8 @@ The last line should give you the image id:
 Successfully built b4227513fc2c
 ```
 
+**Windows users:** Your ID will be longer.
+
 ### Docker run
 You should test your image before deploying it to Kubernetes. To do so,
 start it using `docker run`. You'll need to also pass `--publish` so that
@@ -208,6 +212,8 @@ kubectl cluster-info --context kind-kind
 Have a nice day! 👋
 ```
 
+**Windows command:** `./k8s/start-kind-windows.ps1`
+
 **NOTE:** If you get an error like:
 ```
 ERROR: failed to create cluster: docker run error: command "docker run --hostname kind-control-plane
@@ -231,6 +237,8 @@ kind load docker-image docker.io/lkysow/api:v0.1.0
 
 Image: "docker.io/lkysow/api:v0.1.0" with ID "sha256:b4227513fc2c3323d389c3eecf4c248e4bd7a3bcd70483f6b33ada37e936c5a5" not yet present on node "kind-control-plane", loading...
 ```
+
+**Windows users:** `kind load` doesn't work so you'll need to publish to a Docker registry or use my pre-built image `docker.io/lkysow/api:v0.1.0`.
 
 ## Conclusion
 In this section, you created a `Dockerfile`, built a Docker image, and pushed

@@ -9,6 +9,8 @@ We will do so with zero-downtime and without making any changes to the running w
 
 ## Tasks
 
+**Windows users:** Instead of editing `/etc/hosts`, shut down the API service that was running on the VM. Traffic should get routed over to the API service running on Kubernetes. Skip to the "Verify" section.
+
 ### Switch local DNS
 
 At this point, we still have our `api-vm` service running locally.
