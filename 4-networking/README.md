@@ -101,6 +101,8 @@ rolebinding.rbac.authorization.k8s.io/ingress-nginx-admission created
 job.batch/ingress-nginx-admission-create created
 job.batch/ingress-nginx-admission-patch created
 ```
+
+**Windows command:** `kubectl apply -f nginx-ingress-windows.yaml`
    
 Wait for the ingress controller to become healthy.
    
@@ -152,7 +154,9 @@ $ curl localhost
  "code": 200
 }
 ```
-   
+
+**Windows users:** Navigate to [http://localhost:9090/](http://localhost:9090/)
+
 ## Conclusion
 
 We can now reach API from our local machine.

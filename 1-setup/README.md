@@ -18,6 +18,8 @@ In one terminal tab, start `web`:
 2020-10-20T14:09:57.046-0700 [INFO]  Settings CORS options: allow_creds=false allow_headers=Accept,Accept-Language,Content-Language,Origin,Content-Type allow_origins=*
 ```
 
+**Windows command:** `./vms/start-web-windows.ps1`
+
 The logs say that the service is listening on `0.0.0.0:8080`. Let's open our
 browser to [http://localhost:8080](http://localhost:8080):
 
@@ -60,10 +62,12 @@ sudo ./vms/start-api-darwin.sh
 2020-10-20T14:14:53.361-0700 [INFO]  Settings CORS options: allow_creds=false allow_headers=Accept,Accept-Language,Content-Language,Origin,Content-Type allow_origins=*
 ```
 
+**Windows command:** `./vms/start-api-windows.ps1`
+
 **NOTE:** You must use `sudo` because we're binding to port `80`. This is necessary
 to demonstrate our no-downtime migration later in the tutorial.
 
-If we open our browser to [http://127.0.0.1/](http://127.0.0.1/) we should see
+If we open our browser to [http://127.0.0.1/](http://127.0.0.1/) ([http://127.0.0.1:9090/](http://127.0.0.1:9090/) on Windows) we should see
 
 ```json
 {
@@ -84,6 +88,8 @@ If we open our browser to [http://127.0.0.1/](http://127.0.0.1/) we should see
 This means our `api` service is working!
 
 ### Web calls Api
+
+**Windows users:** Skip to "Everything Working"
 
 All that's left is for `web` to call `api`.
 
@@ -139,6 +145,8 @@ as [http://127.0.0.1/](http://127.0.0.1/):
   "code": 200
 }
 ```
+
+## Everything Working
 
 Now that we have:
 - [x] `web` running on [http://localhost:8080](http://localhost:8080)

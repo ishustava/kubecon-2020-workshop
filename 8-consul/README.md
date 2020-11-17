@@ -10,6 +10,8 @@ cluster.
 
 ## Tasks
 
+**Windows users:** This section does not yet work on Windows.
+
 ### Uninstall NGINX
 We will be using Consul for our ingress controller so we first need to
 uninstall NGINX.
