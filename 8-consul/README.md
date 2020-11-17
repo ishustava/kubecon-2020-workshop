@@ -120,9 +120,14 @@ spec:
 EOF
 ```
 
-Next, configure the ingress gateway
+Next, configure the ingress gateway. Exec into the pod:
 ```bash
-kubectl exec consul-server-0 -- echo '{"Kind":"ingress-gateway","Listeners":[{"Port":80,"Protocol":"http","Services":[{"Hosts":["api"],"Name":"api"}]}],"Name":"ingress-gateway"}' | consul config write -
+kubectl exec -it consul-server-0 sh
+```
+
+And run
+```bash
+echo '{"Kind":"ingress-gateway","Listeners":[{"Port":80,"Protocol":"http","Services":[{"Hosts":["api"],"Name":"api"}]}],"Name":"ingress-gateway"}' | consul config write -
 ```
 
 ### Test Ingress
