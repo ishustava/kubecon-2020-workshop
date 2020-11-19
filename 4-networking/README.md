@@ -81,7 +81,7 @@ Delete the `test-api` pod:
 First, install NGINX ingress controller into your cluster.
    
 ```bash
-$ kubectl apply -f nginx-ingress.yaml
+$ kubectl apply -f 4-networking/nginx-ingress.yaml
 namespace/ingress-nginx created
 serviceaccount/ingress-nginx created
 configmap/ingress-nginx-controller created
@@ -102,7 +102,7 @@ job.batch/ingress-nginx-admission-create created
 job.batch/ingress-nginx-admission-patch created
 ```
 
-**Windows command:** `kubectl apply -f nginx-ingress-windows.yaml`
+**Windows command:** `kubectl apply -f 4-networking/nginx-ingress-windows.yaml`
    
 Wait for the ingress controller to become healthy.
    
