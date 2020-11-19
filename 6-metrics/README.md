@@ -79,6 +79,8 @@ Once added, we should be able to see Kubernetes metrics.
 
 ### Scrape metrics from the api service
 
+**NOTE:** We've programmed our API service to output prometheus metrics. Your application won't automatically output metrics in this format. If you are not already outputting metrics, then prometheus is a great format to start outputting in. If you're already outputting metrics, then we suggest continuing with that format whie you migrate to Kubernetes. After you've migrated, you might look at changing the output format.
+
 First, enable the metrics endpoint on the `api` service
 by setting `METRICS_ENABLE_PROMETHEUS` to `true` in the deployment.yaml.
 
