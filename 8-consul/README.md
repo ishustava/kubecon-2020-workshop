@@ -89,7 +89,7 @@ And navigating to [http://localhost:8500/ui/](http://localhost:8500/ui/)
 The `api` service doesn't show up in the UI right now because it's not part of
 the service mesh.
 
-To add it to the service mesh we need to add the `consul.hashicorp.com/connect-injected: true` annotation:
+To add it to the service mesh we need to add the `consul.hashicorp.com/connect-inject: true` annotation:
 
 ```bash
 kubectl patch deployment api -p '[{"op":"add","path":"/spec/template/metadata/annotations/consul.hashicorp.com~1connect-inject","value":"true"}]' --type "json"
