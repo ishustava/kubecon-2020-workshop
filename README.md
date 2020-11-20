@@ -11,3 +11,9 @@ This is a hands-on tutorial for migrating from VMs to Kubernetes.
 1. [Metrics](./6-metrics)
 1. [Migration](./7-migration)
 1. [Consul Service Mesh](./8-consul)
+
+This talk was given at KubeCon North America on November 17th, 2020 by Iryna Shustava and Luke Kysow.
+
+**Slides:** https://speakerdeck.com/lkysow/migration-101-from-vms-to-kubernetes
+
+**Video:** *Will be linked when CNCF uploads it*
