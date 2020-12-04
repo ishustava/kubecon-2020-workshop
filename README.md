@@ -16,4 +16,4 @@ This talk was given at KubeCon North America on November 17th, 2020 by Iryna Shu
 
 **Slides:** https://speakerdeck.com/lkysow/migration-101-from-vms-to-kubernetes
 
-**Video:** *Will be linked when CNCF uploads it*
+**Video:** https://www.youtube.com/watch?v=MuX3m149FpI
