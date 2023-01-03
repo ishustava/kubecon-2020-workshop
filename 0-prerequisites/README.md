@@ -7,6 +7,9 @@
 * [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 * [Helm](https://helm.sh/docs/intro/install/)
 
+**Note**: This tutorial is only supported for Kubernetes versions earlier than 1.22. This repo is not actively maintained and has
+not been updated to work on later versions.
+
 ## Next Step
 
 Go to [1-setup](../1-setup/README.md).
